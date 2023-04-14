@@ -1,15 +1,17 @@
-import logo from "./../logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login/Login";
+import Register from "./Register/Register";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
 
 function App() {
   return (
     <BrowserRouter>
-    <div>saf</div>
     <main>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
       </main>
     </BrowserRouter>
