@@ -13,7 +13,7 @@ export default function ListItem() {
       isCreated:true
 },
 {
-  name:"Ankit Chapri",
+  name:"blast you",
   email:"neil.sim2s@flowbite.com",
   imagePath:"https://cdn.tuk.dev/assets/templates/olympus/projects.png",
   joinDate:"Nov 10, 2024",
