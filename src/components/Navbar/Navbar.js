@@ -1,6 +1,7 @@
 import { is } from '@babel/types';
 import React, { useState } from 'react'
 import {HiUserGroup} from 'react-icons/hi'
+import {FaStar} from 'react-icons/fa'
 import {VscListSelection} from 'react-icons/vsc'
 
 export default function Navbar({children}) {
@@ -94,9 +95,15 @@ export default function Navbar({children}) {
           <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
           <HiUserGroup/>
             <span className="ml-3">My Groups</span>
+            
           </a>
         </li>
-
+        <li>
+          <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <FaStar/>
+          <span className="ml-3">Favourite Groups</span>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
