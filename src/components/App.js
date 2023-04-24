@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import Register from "./Register/Register";
 import Navbar from "./Navbar/Navbar";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import Group from "./GroupView/Group";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Navbar>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/group" element={<Group />} />
       </Routes>  
 
       </Navbar>
