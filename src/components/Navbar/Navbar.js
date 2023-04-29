@@ -4,6 +4,8 @@ import { FaStar } from "react-icons/fa";
 import { VscListSelection } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Providers/userProvider";
+import ButtonSecondary from "../common/ButtonSecondary";
+import { MdAdd } from "react-icons/md";
 
 import NavbarSubmenu from "./NavbarSubmenu";
 export default function Navbar({ children }) {
@@ -225,6 +227,16 @@ export default function Navbar({ children }) {
           aria-label="Sidebar">
           <div className="h-full  px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul className="space-y-2 font-medium">
+              {/* Add new groupt button */}
+              <li>
+                <ButtonSecondary>
+                  <MdAdd className="w-5 h-5 mr-2" />
+                  Add New Group
+                </ButtonSecondary>
+              </li>
+              <hr className="my-2" />
+              {/* My Groups */}
+
               <li>
                 <Link
                   to="/dashboard"
