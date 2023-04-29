@@ -6,9 +6,13 @@ import Register from "./Register/Register";
 import Navbar from "./Navbar/Navbar";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import Group from "./GroupView/Group";
+import Favourites from "./Favourites/Favourites";
+import UserProvider from "./Providers/userProvider";
 
 function App() {
   return (
+    <UserProvider>
+
     <BrowserRouter>
     <main>
       <Routes>
@@ -20,12 +24,14 @@ function App() {
       <Navbar>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/group" element={<Group />} />
+        <Route path="/favourites" element={<Favourites/>} />
+        <Route path="/group-info" element={<Group/>} />
       </Routes>  
 
       </Navbar>
     </main>
     </BrowserRouter>
+    </UserProvider>
   );
 }
 

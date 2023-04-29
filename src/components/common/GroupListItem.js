@@ -4,20 +4,23 @@ import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
 import SubscriptionType from './SubscriptionType'
 import {AiOutlineSetting} from 'react-icons/ai'
 import {MdPersonAddAlt} from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function GroupListItem({name, email,imagePath,joinDate, isCreated,isSelected,handleRowSelect}) {
-
-    // console.log("isSelected---",isSelected);
-
+  const navigate = useNavigate();
     const [isFavourite, setIsFavourite] = React.useState(false);
     const handleFavoriteClick = () => {
         setIsFavourite(!isFavourite);
     }
-    
+    const getGroupInfo = () => {
+        console.log("Get Group Info");
+        navigate('/group-info');
+    }
   return (
     <>
        
-   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" onClick={getGroupInfo}>
           <td className="w-4 p-4">
             <div className="flex items-center">
               <input  id="checkbox-table-search-2" type="checkbox" checked={isSelected}  onChange={() => handleRowSelect(email)}
