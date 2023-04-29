@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // This file shows all the conversations in a group google group
 //  Then the user can click on a conversation to view the messages in that conversation
 //  The user can also create a new conversation
-import GroupThreads from './GroupThreads'
+import GroupThreads from './GroupThreadsItems'
 
 const Group = () => {
 
@@ -27,18 +27,21 @@ const Group = () => {
 
     const [data, setData] = useState([
         {
+            id:1,
             name: 'John Doe',
             subject: 'This is a test',
             date: '01/01/2021',
             time: '12:00:00'
         },
         {
+            id:2,
             name: 'Jane Doe2',
             subject: 'This is a test',
             date: '01/01/2021',
             time: '12:00:00'
         },
         {
+            id:3,
             name: 'John Doe',
             subject: 'This is a test',
             date: '01/01/2021',
@@ -47,22 +50,18 @@ const Group = () => {
     ])
 
 
-    const [members, setMembers] = useState([])
-    const [posts, setPosts] = useState([])
-    const [search, setSearch] = useState('')
-    const [searchResults, setSearchResults] = useState([])
+    // const [members, setMembers] = useState([])
+    // const [posts, setPosts] = useState([])
+    // const [search, setSearch] = useState('')
+    // const [searchResults, setSearchResults] = useState([])
     const columnHeaders =  columns.map((column) => (
       <th key={column.Header} scope="col" className="px-4 py-3">{column.Header}</th>
     ))
-    const [isEditOptionsOpen, setIsEditOptionsOpen] = useState(false)
-    const toggleEditOptions = (e) => {
-      e.preventDefault()
-      setIsEditOptionsOpen(!isEditOptionsOpen)
-    }
+    
 
     const rowData = data.map((row) => (
 
-      <GroupThreads row={row} columns={columns} />
+      <GroupThreads key={row.id} row={row} columns={columns} />
   ))
 
   return (

@@ -7,7 +7,7 @@ import {MdPersonAddAlt} from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 
 
-export default function GroupListItem({name, email,imagePath,joinDate, isCreated,isSelected,handleRowSelect}) {
+export default function GroupListItem({name, email,imagePath,joinDate, isCreated,isSelected,handleRowSelect,key}) {
   const navigate = useNavigate();
     const [isFavourite, setIsFavourite] = React.useState(false);
     const handleFavoriteClick = () => {
@@ -20,7 +20,9 @@ export default function GroupListItem({name, email,imagePath,joinDate, isCreated
   return (
     <>
        
-   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" onClick={getGroupInfo}>
+   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+   key={key}
+    >
           <td className="w-4 p-4">
             <div className="flex items-center">
               <input  id="checkbox-table-search-2" type="checkbox" checked={isSelected}  onChange={() => handleRowSelect(email)}
@@ -28,7 +30,7 @@ export default function GroupListItem({name, email,imagePath,joinDate, isCreated
               <label htmlFor="checkbox-table-search-2" className="sr-only">checkbox</label>
             </div>
           </td>
-          <th scope="row" className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th  onClick={getGroupInfo} scope="row" className="cursor-pointer flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <img className="w-10 h-10 rounded-full" src={imagePath} alt={name+" image"} />
             <div className="pl-3">
               <div className="text-base font-semibold">{name}</div>

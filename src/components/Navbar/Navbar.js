@@ -73,6 +73,9 @@ export default function Navbar({children}) {
               </div>
               <ul className="py-1" role="none">
                 <li>
+                  <Link to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem" onClick={toggleProfile}>Profile</Link>
+                </li>
+                <li>
                   <Link to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem" onClick={toggleProfile}>Dashboard</Link>
                 </li>
                 <li>

@@ -8,6 +8,7 @@ import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import Group from "./GroupView/Group";
 import Favourites from "./Favourites/Favourites";
 import UserProvider from "./Providers/userProvider";
+import GroupThreadView from "./GroupView/GroupThreadView";
 
 function App() {
   return (
@@ -23,9 +24,11 @@ function App() {
 
       <Navbar>
       <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/favourites" element={<Favourites/>} />
         <Route path="/group-info" element={<Group/>} />
+        <Route path="/group-thread-view" element={<GroupThreadView />} />
       </Routes>  
 
       </Navbar>
