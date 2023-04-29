@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ThreadMessage from "./ThreadMessage";
+import { AiOutlineComment } from "react-icons/ai";
 
 import CommentSection from "./CommentSection";
 import { useLocation } from "react-router-dom";
@@ -75,14 +76,14 @@ export default function GroupThreadView() {
     console.log(isFocusedRef);
     // focus on the message usign ref
     if (!toFocus || id <= 0) {
-        return;
+      return;
     }
-    isFocusedRef.current[id-1].current.scrollIntoView({
+    isFocusedRef.current[id - 1].current.scrollIntoView({
       behavior: "smooth",
       block: "center",
       inline: "center",
     });
-    isFocusedRef.current[id-1].current.focus();
+    isFocusedRef.current[id - 1].current.focus();
   };
 
   const toggleExpand = (parentId) => {
@@ -108,6 +109,7 @@ export default function GroupThreadView() {
         messageTime={item.messageTime}
         isHead={item.isHead}
         isExpanded={isExpanded[index]}
+        haveReply={true}
         toggleExpand={toggleExpand}
         parentId={item.parentId}
         key={item.id}
@@ -118,6 +120,10 @@ export default function GroupThreadView() {
         }
         isFocusedRef={isFocusedRef.current[index]}
         toggleFocus={toggleFocus}
+        option1={"Reply"}
+        option2={"Reply all"}
+        icon1={<AiOutlineComment />}
+        icon2={<AiOutlineComment />}
       />
     );
   });

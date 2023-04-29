@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   BsFillArrowUpCircleFill,
   BsFillArrowDownCircleFill,
-  BsFillReplyAllFill
+  BsFillReplyAllFill,
 } from "react-icons/bs";
 
 export default function ThreadMessage({
@@ -24,17 +24,22 @@ export default function ThreadMessage({
   id,
   isFocusedRef,
   toggleFocus,
+  haveReply,
+  option1,
+  option2,
+  icon1,
+  icon2,
 }) {
   const pubdate = new Date(messageDate);
   const options = { year: "numeric", month: "short", day: "numeric" };
 
   const toggle = () => {
     toggleExpand(isExpanded ? parentId : id);
-    toggleFocus(isExpanded , parentId );
+    toggleFocus(isExpanded, parentId);
   };
 
   const formattedDate = pubdate.toLocaleDateString("en-US", options); // "Feb 8, 2022"c
-  console.log("id", id);
+  console.log(isExpanded);
   return (
     <>
       {isHead ? (
@@ -90,32 +95,39 @@ export default function ThreadMessage({
               </time>
             </p>
           </footer>
-          <h2 id="accordion-flush-heading-1">
-            <button
-              type="button"
-              ref={isFocusedRef}
-              className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 focus:outline-none focus:bg-blue-100 dark:focus:bg-gray-900 focus:text-blue-600 dark:focus:text-blue-500 p-6 rounded-lg"
-              data-accordion-target="#accordion-flush-body-1"
-              aria-expanded="true"
-              aria-controls="accordion-flush-body-1">
-              {/* <span 
+          {haveReply ? (
+            <>
+              <h2 id="accordion-flush-heading-1">
+                <button
+                  type="button"
+                  ref={isFocusedRef}
+                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 focus:outline-none focus:bg-blue-100 dark:focus:bg-gray-900 focus:text-blue-600 dark:focus:text-blue-500 p-6 rounded-lg"
+                  data-accordion-target="#accordion-flush-body-1"
+                  aria-expanded="true"
+                  aria-controls="accordion-flush-body-1">
+                  {/* <span 
             >{parentContent.substring(0, 50)}...</span> */}
-              {/* Reply to */}
-              <span onClick={toggle}
- className="bg-gray-300
+                  {/* Reply to */}
+                  <span
+                    onClick={toggle}
+                    className="bg-gray-300
   dark:bg-blue-900 w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 focus:outline-none focus:bg-blue-100 dark:focus:bg-gray-900 focus:text-blue-600 dark:focus:text-blue-500 p-6 rounded-lg">
-                {<BsFillReplyAllFill/>} Reply to: {parentContent.substring(0, 50)}...
-              </span>
-              {/* Use react icons here */}
-              <span onClick={() => toggleExpand(id)}>
-                {isExpanded ? (
-                  <BsFillArrowUpCircleFill />
-                ) : (
-                  <BsFillArrowDownCircleFill />
-                )}
-              </span>
-            </button>
-          </h2>
+                    {<BsFillReplyAllFill />} Reply to:{" "}
+                    {parentContent.substring(0, 50)}...
+                  </span>
+                  {/* Use react icons here */}
+                  <span onClick={() => toggleExpand(id)}>
+                    {isExpanded ? (
+                      <BsFillArrowUpCircleFill />
+                    ) : (
+                      <BsFillArrowDownCircleFill />
+                    )}
+                  </span>
+                </button>
+              </h2>
+            </>
+          ) : null}
+
           <div
             id="accordion-flush-body-1"
             className={isExpanded ? "visible" : "hidden"}
@@ -126,14 +138,16 @@ export default function ThreadMessage({
               <button
                 type="button"
                 className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                <AiOutlineComment className="mr-1" />
-                Reply
+                <div className="mr-1">{icon1}</div>
+                {/* <icon1 className="mr-1" /> */}
+                {option1}
               </button>
               <button
                 type="button"
                 className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                <AiOutlineComment className="mr-1" />
-                Reply all
+                <div className="mr-1">{icon2}</div>
+                {/* <icon2 className="mr-1" /> */}
+                {option2}
               </button>
             </div>
           </div>
