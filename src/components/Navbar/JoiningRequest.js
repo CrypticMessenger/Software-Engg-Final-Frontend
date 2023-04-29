@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
-import ThreadMessage from "./GroupView/ThreadMessage";
+import ThreadMessage from "../GroupView/ThreadMessage";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
-export default function ApprovalRequest() {
+export default function JoiningRequest() {
   const [data, setData] = useState([
     {
       id: 1,
@@ -10,23 +10,24 @@ export default function ApprovalRequest() {
       authorEmail: "johnDoe@gmail.com",
       authorProfile:
         "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      messageSubject:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-      messageContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc sapien aliquet urna, vitae aliqua",
       messageDate: "2021-08-01",
       messageTime: "12:00",
     },
     {
-      id: 1,
-      author: "John Doe1",
+      id: 2,
+      author: "John Doel1",
       authorEmail: "johnDoe@gmail.com",
       authorProfile:
         "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      messageSubject:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-      messageContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc sapien aliquet urna, vitae aliqua",
+      messageDate: "2021-08-01",
+      messageTime: "12:00",
+    },
+    {
+      id: 3,
+      author: "John",
+      authorEmail: "johnDoe@gmail.com",
+      authorProfile:
+        "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
       messageDate: "2021-08-01",
       messageTime: "12:00",
     },
@@ -34,18 +35,13 @@ export default function ApprovalRequest() {
   const displayRequests = data.map((item) => {
     return (
       <>
-        <h1
-          className="text-2xl font-bold text-gray-800 mt-2 bg-gray-100 p-2 rounded-t-lg
-        ">
-          Subject: {item.messageSubject}
-        </h1>
         <ThreadMessage
           id={item.id}
-          author={item.author}
+          author={item.author + " has requested to join the group!"}
           authorEmail={item.authorEmail}
           authorProfile={item.authorProfile}
-          messageSubject={item.messageSubject}
-          messageContent={item.messageContent}
+          messageSubject={null}
+          messageContent={null}
           messageDate={item.messageDate}
           messageTime={item.messageTime}
           isHead={false}

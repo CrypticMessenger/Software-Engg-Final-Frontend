@@ -9,8 +9,8 @@ import Group from "./GroupView/Group";
 import Favourites from "./Favourites/Favourites";
 import UserProvider from "./Providers/userProvider";
 import GroupThreadView from "./GroupView/GroupThreadView";
-import ApprovalRequest from "./ApprovalRequest";
-import JoiningRequest from "./JoiningRequest";
+import ApprovalRequest from "./Navbar/ApprovalRequest";
+import JoiningRequest from "./Navbar/JoiningRequest";
 
 function App() {
   return (
