@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-
 // This file shows all the conversations in a group google group
 //  Then the user can click on a conversation to view the messages in that conversation
 //  The user can also create a new conversation
+import GroupThreads from './GroupThreads'
 
 const Group = () => {
 
@@ -22,7 +22,7 @@ const Group = () => {
         {
             Header: 'Time',
             accessor: 'time'
-        },
+        }
     ])
 
     const [data, setData] = useState([
@@ -46,12 +46,24 @@ const Group = () => {
         },
     ])
 
+
     const [members, setMembers] = useState([])
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
-    
-    
+    const columnHeaders =  columns.map((column) => (
+      <th key={column.Header} scope="col" className="px-4 py-3">{column.Header}</th>
+    ))
+    const [isEditOptionsOpen, setIsEditOptionsOpen] = useState(false)
+    const toggleEditOptions = (e) => {
+      e.preventDefault()
+      setIsEditOptionsOpen(!isEditOptionsOpen)
+    }
+
+    const rowData = data.map((row) => (
+
+      <GroupThreads row={row} columns={columns} />
+  ))
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
@@ -82,22 +94,7 @@ const Group = () => {
             Add product
           </button>
           <div className="flex items-center space-x-3 w-full md:w-auto">
-            <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown" className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
-              <svg className="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path clipRule="evenodd" fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-              </svg>
-              Actions
-            </button>
-            <div id="actionsDropdown" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-              <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
-                <li>
-                  <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mass Edit</a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete all</a>
-              </div>
-            </div>
+           
             <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown" className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-4 w-4 mr-2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
@@ -107,6 +104,7 @@ const Group = () => {
                 <path clipRule="evenodd" fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
               </svg>
             </button>
+            {/* Dropdown filter */}
             <div id="filterDropdown" className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
               <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose brand</h6>
               <ul className="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
@@ -142,9 +140,7 @@ const Group = () => {
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                {columns.map((column) => (
-                  <th key={column.Header} scope="col" className="px-4 py-3">{column.Header}</th>
-                ))}
+              {columnHeaders}
             {/* </tr> */}
               <th scope="col" className="px-4 py-3">
                 <span className="sr-only">Actions</span>
@@ -155,45 +151,7 @@ const Group = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
-                <tr key={row.id} className="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                    {columns.map((column,index) => {
-                        const value = row[column.accessor]
-                        return (
-                            index === 0 ? (
-                                <th scope="row" className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer hover:underline">
-                                    {column.Cell ? column.Cell({ value }) : value}
-                                </th>
-                            ) : (
-                            <td key={column.accessor} className="px-4 py-3">
-                                {column.Cell ? column.Cell({ value }) : value}
-                            </td>
-                            )
-                        )
-                    })}
-              <td className="px-4 py-3"></td>
-              <td className="px-4 py-3 flex items-center justify-end">
-                <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                  <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                </button>
-                <div id="apple-imac-27-dropdown" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                  <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
-                    <li>
-                      <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                    </li>
-                    <li>
-                      <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                    </li>
-                  </ul>
-                  <div className="py-1">
-                    <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                  </div>
-                </div>
-              </td>
-                </tr>
-            ))}
+            {rowData}
           </tbody>
         </table>
       </div>

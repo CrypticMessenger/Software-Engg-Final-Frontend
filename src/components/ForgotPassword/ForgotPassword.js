@@ -5,6 +5,7 @@ const ForgotPassword = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         console.log('Submitted')
+        
     }
     const props = {
         title: 'Forgot Password',
