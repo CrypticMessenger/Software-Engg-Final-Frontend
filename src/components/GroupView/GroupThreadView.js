@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ThreadMessage from "./ThreadMessage";
 import { AiOutlineComment } from "react-icons/ai";
 
-import CommentSection from "./CommentSection";
+import Discussion from "./Discussion";
 import { useLocation } from "react-router-dom";
 export default function GroupThreadView() {
   const { state } = useLocation();
@@ -36,7 +36,7 @@ export default function GroupThreadView() {
       parentId: 1,
     },
     {
-      id: 3,
+      id: 36,
       author: "John Dose3",
       authorEmail: "johnDoe@gmail.com",
       authorProfile:
@@ -133,7 +133,7 @@ export default function GroupThreadView() {
   return (
     <>
       {thread}
-      <CommentSection numComments={thread.length} />
+      <Discussion numComments={thread.length} />
     </>
   );
 }

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import Fuse from "fuse.js";
 // This file shows all the conversations in a group google group
 //  Then the user can click on a conversation to view the messages in that conversation
 //  The user can also create a new conversation
 import GroupThreads from "./GroupThreadsItems";
 import ModalAddPost from "../modals/ModalAddPost";
+import { MdAdd } from "react-icons/md";
+import ButtonSecondary from "../common/ButtonSecondary";
 
 const Group = () => {
   const [columns, setColumns] = useState([
@@ -28,38 +31,54 @@ const Group = () => {
   const [data, setData] = useState([
     {
       id: 1,
-      name: "John Doe",
+      name: "Sukhmeet Doe",
       subject: "This is a test",
       date: "01/01/2021",
       time: "12:00:00",
     },
     {
       id: 2,
-      name: "Jane Doe2",
+      name: "Sourabh Doe2",
       subject: "This is a test",
       date: "01/01/2021",
       time: "12:00:00",
     },
     {
       id: 3,
-      name: "John Doe",
+      name: "Arshi Doe",
       subject: "This is a test",
       date: "01/01/2021",
       time: "12:00:00",
     },
   ]);
+  const options = {
+    // includeScore: true,
+    useExtendedSearch: true,
+    // includeMatches: true,
+    threshold: 0.3,
+    keys: ["name", "subject"],
+  };
+  const handleSearch = (e) => {
+    const fuse = new Fuse(data, options);
+    setSearchQuery(e.target.value);
+    if (e.target.value.trim() !== "") {
+      setSearchResults(fuse.search(e.target.value));
+    } else {
+      setSearchResults(null);
+    }
+  };
 
-  // const [members, setMembers] = useState([])
-  // const [posts, setPosts] = useState([])
-  // const [search, setSearch] = useState('')
-  // const [searchResults, setSearchResults] = useState([])
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState(null);
   const columnHeaders = columns.map((column) => (
     <th key={column.Header} scope="col" className="px-4 py-3">
       {column.Header}
     </th>
   ));
-
-  const rowData = data.map((row) => (
+  const filteredGroupsData = searchResults
+    ? searchResults.map((result) => result.item)
+    : data;
+  const rowData = filteredGroupsData.map((row) => (
     <GroupThreads key={row.id} row={row} columns={columns} />
   ));
 
@@ -96,6 +115,8 @@ const Group = () => {
                     id="simple-search"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Search"
+                    value={searchQuery}
+                    onChange={handleSearch}
                     required
                   />
                 </div>
@@ -106,14 +127,24 @@ const Group = () => {
             <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
               <div className="flex items-center space-x-3 w-full md:w-auto">
                 {/* Dropdown filter */}
-                <button
+                {/* <button
                   className="flex items-center space-x-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   onClick={() => {
                     setIsPostModalOpen(!isPostModalOpen);
                     console.log(isPostModalOpen);
                   }}>
                   Post
-                </button>
+                </button> */}
+
+                <ButtonSecondary
+                  onClick={() => {
+                    setIsPostModalOpen(!isPostModalOpen);
+                    console.log(isPostModalOpen);
+                  }}>
+                  <MdAdd className="w-5 h-5 mr-2" />
+                  Post
+                </ButtonSecondary>
+
                 <button
                   id="filterDropdownButton"
                   data-dropdown-toggle="filterDropdown"

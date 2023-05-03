@@ -1,6 +1,6 @@
 import PostButton from "./PostButton";
 
-export default function CommentSection({ numComments}) {
+export default function Discussion({ numComments }) {
   return (
     <>
       <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">

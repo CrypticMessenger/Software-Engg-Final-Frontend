@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function ModalAddPost({ isVisible, setIsVisible }) {
+  const [Subject, setSubject] = useState("");
+  const [Body, setBody] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(Subject, Body);
+    setIsVisible(false);
+  };
   return (
     <div>
-      {/* Main modal */}
       <div
         id="authentication-modal"
         tabIndex={-1}
@@ -35,9 +41,9 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
             </button>
             <div className="px-6 py-6 lg:px-8">
               <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                Sign in to our platform
+                Add New Thread Post
               </h3>
-              <form className="space-y-6" action="#">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="subject"
@@ -49,7 +55,8 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
                     name="subject"
                     id="subject"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Write something cool... 👋🏻"
+                    placeholder="Start a new discussion... 👋🏻"
+                    onChange={(e) => setSubject(e.target.value)}
                     required
                   />
                 </div>
@@ -59,12 +66,14 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Content
                   </label>
-                  <input
+                  <textarea
+                    rows={4}
                     type="text"
                     name="content"
                     id="content"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Describe something cool... 🐉"
+                    onChange={(e) => setBody(e.target.value)}
                     required
                   />
                 </div>
