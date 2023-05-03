@@ -90,7 +90,7 @@ export default function ListItem({ groupsData, tableHeaders }) {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800">
-        <label for="table-search" className="sr-only">
+        <label htmlFor="table-search" className="sr-only">
           Search
         </label>
         <div className="relative flex ml-auto">
@@ -114,8 +114,9 @@ export default function ListItem({ groupsData, tableHeaders }) {
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   onClick={selectAll}
+                  onChange={e => {}}
                 />
-                <label for="checkbox-all-search" className="sr-only">
+                <label htmlFor="checkbox-all-search" className="sr-only">
                   checkbox
                 </label>
               </div>

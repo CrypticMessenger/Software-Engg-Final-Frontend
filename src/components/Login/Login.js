@@ -6,12 +6,12 @@ import { UserContext } from "../Providers/userProvider";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { handleLogin } = useContext(UserContext);
+  // const { handleLogin } = useContext(UserContext);
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted");
     const userData = { name: "Neil Sims", email: "neil_sims@ymail.com" };
-    handleLogin(userData);
+    // handleLogin(userData);
 
     navigate("/dashboard");
   };
