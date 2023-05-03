@@ -14,7 +14,7 @@ function App() {
     <UserProvider>
 
     <BrowserRouter>
-    <main>
+    <main data-testid="allRoutes">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

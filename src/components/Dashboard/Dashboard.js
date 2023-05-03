@@ -38,9 +38,8 @@ useEffect(() => {
   //fetch data from api call and store it in groupsData
 }, [])
   return (
-    <div>
+    <div data-testid="dashboard">
         <GroupList groupsData={groupsData} tableHeaders={tableHeaders}/>
-        
     </div>
   )
 }

@@ -5,8 +5,8 @@ import Input from './Input'
 
 const AuthForm = ({ title, buttonText, onSubmit , titleText , secondaryLink , secondaryText , alternativeTextPre , alternativeLink , alternativeText , error }) => {
     return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="bg-gray-50 dark:bg-gray-900" data-testid="authForm">
+    <div data-testid="titleAuthForm" className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <Link
         to="/"
         className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -15,10 +15,10 @@ const AuthForm = ({ title, buttonText, onSubmit , titleText , secondaryLink , se
       </Link>
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 data-testid="titleTextAuthForm" className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             {titleText}
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" action="#" data-testid="formAuthForm">
             <div>
                 <Input label="Email" placeholder="email" error={error} />
                 <Input label="Password" placeholder="*******" error={error} />
@@ -43,14 +43,15 @@ const AuthForm = ({ title, buttonText, onSubmit , titleText , secondaryLink , se
                   </label>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 to={secondaryLink}
                 className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 {secondaryText}
-              </Link>
+              </Link> */}
             </div>
             <ButtonPrimary
+              testid="buttonAuthForm"
               type="submit"
               onClick={onSubmit}
               // eslint-disable-next-line react/style-prop-object

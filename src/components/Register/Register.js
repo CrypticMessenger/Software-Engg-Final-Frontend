@@ -1,7 +1,7 @@
 import {React} from 'react'
 import { useNavigate } from 'react-router-dom'; 
-
 import AuthForm from '../common/AuthForm'
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -26,9 +26,8 @@ export default function Register() {
     onSubmit,
   }
   return (
-    <div>
+    <div data-testid="register">
       <AuthForm {...props} />
-
     </div>
   )
 }
