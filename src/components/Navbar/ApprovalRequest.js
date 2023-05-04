@@ -2,6 +2,11 @@ import { React, useState, useEffect } from "react";
 import ThreadMessage from "../GroupView/ThreadMessage";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
+
+/**
+ * A component that displays a message for a specific group for posting approval requests.
+ * @returns {JSX.Element} A React component that displays a message for a specific group for posting approval requests.
+ */
 export default function ApprovalRequest() {
   const [data, setData] = useState([
     {
@@ -67,6 +72,7 @@ export default function ApprovalRequest() {
   });
   useEffect(() => {
     // get data from api
+    document.title = "Approve requests";
   }, []);
   console.log(displayRequests);
 

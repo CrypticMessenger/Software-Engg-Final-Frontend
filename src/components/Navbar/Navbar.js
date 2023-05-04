@@ -6,8 +6,15 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../Providers/userProvider";
 import ButtonSecondary from "../common/ButtonSecondary";
 import { MdAdd } from "react-icons/md";
-
 import NavbarSubmenu from "./NavbarSubmenu";
+
+/**
+ * A component that displays a navbar.
+ * @param {Object} children The children of the component.
+ * @returns {JSX.Element} A React component that displays a navbar.
+ * @example
+ * <Navbar />
+ */
 export default function Navbar({ children }) {
   const groupsData = [
     {
@@ -44,9 +51,9 @@ export default function Navbar({ children }) {
     (group) => group.isCreated === true
   );
 
-  const createdGroupList = newFilteredGroup.map((group) => {
-    return <NavbarSubmenu group={group} />;
-  });
+  // const createdGroupList = newFilteredGroup.map((group) => {
+  //   return <NavbarSubmenu group={group} />;
+  // });
 
   const [isVisible, setShowSidebar] = useState(false);
   const [isProfileVisible, setProfileVisible] = useState(false);
@@ -254,7 +261,7 @@ export default function Navbar({ children }) {
                 </Link>
               </li>
               <hr className="my-2" />
-              {createdGroupList}
+              {/* {createdGroupList} */}
             </ul>
           </div>
         </aside>

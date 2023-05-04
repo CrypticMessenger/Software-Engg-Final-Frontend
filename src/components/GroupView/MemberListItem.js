@@ -1,13 +1,14 @@
 import React from "react";
 import { IoExitOutline } from "react-icons/io5";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import SubscriptionType from "./SubscriptionType";
+import SubscriptionType from "../common/SubscriptionType";
 import { AiOutlineSetting } from "react-icons/ai";
 import { MdPersonAddAlt } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import ModalLeaveGroup from "../modals/ModalLeaveGroup";
 import ModalAddMember from "../modals/ModalAddMember";
+import RoleType from "../common/RoleType";
 
 /**
  * A component that displays a single row in the group list.
@@ -19,6 +20,7 @@ import ModalAddMember from "../modals/ModalAddMember";
  * @param {boolean} isSelected - Whether the group is selected.
  * @param {function} handleRowSelect - The function to call when the row is selected.
  * @param {string} key - The key of the row.
+ * @param {string} moreInfoRoute - The route to navigate to when the user clicks on the group name.
  * @returns {JSX.Element} - A React component that displays a single row in the group list.
  * @example
  * <GroupListItem
@@ -33,7 +35,7 @@ import ModalAddMember from "../modals/ModalAddMember";
  * />
  *
  */
-export default function GroupListItem({
+export default function MemberListItem({
   name,
   email,
   imagePath,
@@ -42,6 +44,9 @@ export default function GroupListItem({
   isSelected,
   handleRowSelect,
   key,
+  moreInfoRoute,
+  dropdownList,
+  showIcons,
 }) {
   const navigate = useNavigate();
   const [isFavourite, setIsFavourite] = React.useState(false);
@@ -50,9 +55,9 @@ export default function GroupListItem({
   };
   const getGroupInfo = () => {
     console.log("Get Group Info");
-    navigate("/group-info"); // can pass information about the roles here
+    navigate(moreInfoRoute);
   };
-  const dropdownList = ["Each Email", "Digest", "Abridged", "No email"];
+
   const [isExitVisible, setIsExitVisible] = React.useState(false);
   const [isAddPeopleVisible, setIsAddPeopleVisible] = React.useState(false);
   const handleAddClick = () => {
@@ -81,9 +86,9 @@ export default function GroupListItem({
           </div>
         </td>
         <th
-          onClick={getGroupInfo}
+          onClick={null}
           scope="row"
-          className="cursor-pointer flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          className=" flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           <img
             className="w-10 h-10 rounded-full"
             src={imagePath}
@@ -96,59 +101,61 @@ export default function GroupListItem({
         </th>
         <td className="px-6 py-4">{joinDate}</td>
         <td className="px-6 py-4">
-          <SubscriptionType dropdownList={dropdownList} />
+          <RoleType dropdownList={dropdownList} />
         </td>
 
         <td className="px-6 py-4">
-          <div className="flex items-center justify-end space-x-2">
-            {isCreated && (
-              <AiOutlineSetting
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={() => {}}
-                title="Settings"
-              />
-            )}
-            {isCreated && (
-              <MdPersonAddAlt
+          {showIcons && (
+            <div className="flex items-center justify-end space-x-2">
+              {isCreated && (
+                <AiOutlineSetting
+                  className="w-7 h-7 p-1  rounded-full cursor-pointer"
+                  onClick={() => {}}
+                  title="Settings"
+                />
+              )}
+              {isCreated && (
+                <MdPersonAddAlt
+                  className="w-7 h-7 p-1  rounded-full cursor-pointer"
+                  onClick={() => {
+                    setIsAddPeopleVisible(!isAddPeopleVisible);
+                  }}
+                  title="Add Person"
+                />
+              )}
+              <IoExitOutline
                 className="w-7 h-7 p-1  rounded-full cursor-pointer"
                 onClick={() => {
-                  setIsAddPeopleVisible(!isAddPeopleVisible);
+                  setIsExitVisible(!isExitVisible);
                 }}
-                title="Add Person"
+                title="Exit"
               />
-            )}
-            <IoExitOutline
-              className="w-7 h-7 p-1  rounded-full cursor-pointer"
-              onClick={() => {
-                setIsExitVisible(!isExitVisible);
-              }}
-              title="Exit"
-            />
-            {isFavourite ? (
-              <AiFillStar
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={handleFavoriteClick}
-                title="Remove from Favorites"
+              {isFavourite ? (
+                <AiFillStar
+                  className="w-7 h-7 p-1  rounded-full cursor-pointer"
+                  onClick={handleFavoriteClick}
+                  title="Remove from Favorites"
+                />
+              ) : (
+                <AiOutlineStar
+                  className="w-7 h-7 p-1  rounded-full cursor-pointer"
+                  onClick={handleFavoriteClick}
+                  title="Add to Favorites"
+                  x
+                />
+              )}
+              <ModalLeaveGroup
+                isVisible={isExitVisible}
+                setIsVisible={setIsExitVisible}
               />
-            ) : (
-              <AiOutlineStar
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={handleFavoriteClick}
-                title="Add to Favorites"
-                x
+              <ModalAddMember
+                isVisible={isAddPeopleVisible}
+                setIsVisible={setIsAddPeopleVisible}
               />
-            )}
-            <ModalLeaveGroup
-              isVisible={isExitVisible}
-              setIsVisible={setIsExitVisible}
-            />
-            <ModalAddMember
-              isVisible={isAddPeopleVisible}
-              setIsVisible={setIsAddPeopleVisible}
-            />
-            {/* {modalLeaveGroup(isExitVisible, setIsExitVisible)} */}
-            {/* {modalAddMember(isAddPeopleVisible, setIsAddPeopleVisible)} */}
-          </div>
+              {/* {modalLeaveGroup(isExitVisible, setIsExitVisible)} */}
+              {/* {modalAddMember(isAddPeopleVisible, setIsAddPeopleVisible)} */}
+            </div>
+          )}
         </td>
       </tr>
     </>

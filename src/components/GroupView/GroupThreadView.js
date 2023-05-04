@@ -4,6 +4,13 @@ import { AiOutlineComment } from "react-icons/ai";
 
 import Discussion from "./Discussion";
 import { useLocation } from "react-router-dom";
+
+/**
+ * GroupThreadView component - for the thread view page, in which user can reply to already existing posts or create a new post.
+ * @returns {JSX.Element} - A React component that displays the GroupThreadView component.
+ * @example
+ * <GroupThreadView />
+ */
 export default function GroupThreadView() {
   const { state } = useLocation();
   const data = [

@@ -7,6 +7,55 @@ import {
   BsFillReplyAllFill,
 } from "react-icons/bs";
 
+/**
+ * A component that displays a message in the GroupThreadView component. Used in GroupThreadView.js
+ * @param {string} author The name of the author of the message.
+ * @param {string} authorEmail The email of the author of the message.
+ * @param {string} authorProfile The profile picture of the author of the message.
+ * @param {string} messageSubject The subject of the message.
+ * @param {string} messageContent The content of the message.
+ * @param {string} messageDate The date of the message.
+ * @param {string} messageTime The time of the message.
+ * @param {boolean} isHead Whether the message is the head of a thread.
+ * @param {boolean} isExpanded Whether the message is expanded.
+ * @param {string} parentId The id of the parent message.
+ * @param {function} toggleExpand A function that toggles the expanded state of a message.
+ * @param {string} parentContent The content of the parent message.
+ * @param {string} key The key of the message.
+ * @param {string} id The id of the message.
+ * @param {function} isFocusedRef A function that toggles the focused state of a message.
+ * @param {function} toggleFocus A function that toggles the focused state of a message.
+ * @param {boolean} haveReply Whether the message has a reply.
+ * @param {string} option1 The first option of the message.
+ * @param {string} option2 The second option of the message.
+ * @param {string} icon1 The first icon of the message.
+ * @param {string} icon2 The second icon of the message.
+ * @returns {JSX.Element} A React component that displays a message in the GroupThreadView component.
+ * @example
+ * <ThreadMessage
+ * author="John Doe"
+ * authorEmail="doe.john@gmail.com"
+ * authorProfile="https://picsum.photos/200"
+ * messageSubject="Hello World"
+ * messageContent="Hello World"
+ * messageDate="2021-02-08"
+ * messageTime="12:00"
+ * isHead={true}
+ * isExpanded={true}
+ * parentId="1"
+ * toggleExpand={toggleExpand}
+ * parentContent="Hello World"
+ * key="1"
+ * id="1"
+ * isFocusedRef={isFocusedRef.current[index]}
+ * toggleFocus={toggleFocus}
+ * haveReply={true}
+ * option1={"Reply"}
+ * option2={"Reply all"}
+ * icon1={<AiOutlineComment />}
+ * icon2={<AiOutlineComment />}
+ * />
+ */
 export default function ThreadMessage({
   author,
   authorEmail,

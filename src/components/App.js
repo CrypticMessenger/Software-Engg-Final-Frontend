@@ -5,12 +5,12 @@ import Dashboard from "./Dashboard/Dashboard";
 import Register from "./Register/Register";
 import Navbar from "./Navbar/Navbar";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
-import Group from "./GroupView/Group";
 import Favourites from "./Favourites/Favourites";
 import UserProvider from "./Providers/userProvider";
 import GroupThreadView from "./GroupView/GroupThreadView";
 import ApprovalRequest from "./Navbar/ApprovalRequest";
 import JoiningRequest from "./Navbar/JoiningRequest";
+import GroupThreadsList from "./GroupView/GroupThreadsList";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/favourites" element={<Favourites />} />
-              <Route path="/group-info" element={<Group />} />
+              <Route path="/group-info" element={<GroupThreadsList />} />
               <Route path="/group-thread-view" element={<GroupThreadView />} />
               <Route path="/approval-request" element={<ApprovalRequest />} />
               <Route path="/joining-request" element={<JoiningRequest />} />
