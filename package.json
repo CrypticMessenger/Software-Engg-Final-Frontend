@@ -19,10 +19,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --collectCoverageFrom='src/components/**'",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "createdoc": "jsdoc src -r -d docs",
     "docs": "documentation build src/** -f html --github -o docs"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.{js,jsx,ts,tsx}"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -46,11 +56,10 @@
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.14",
     "documentation": "^14.0.1",
-    "enzyme-adapter-react-16": "^1.15.7",
     "eslint": "^8.38.0",
     "eslint-config-react-app": "^7.0.1",
-    "jest": "^27.5.1",
     "jsdoc": "^4.0.2",
+    "jest": "^27.5.1",
     "postcss": "^8.4.21",
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.3.1"

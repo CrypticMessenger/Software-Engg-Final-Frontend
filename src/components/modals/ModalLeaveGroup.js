@@ -11,6 +11,7 @@ import React from "react";
 export default function ModalLeaveGroup({ isVisible, setIsVisible }) {
   return (
     <div
+     data-testid="modalLeaveGroupTest"
       id="popup-modal"
       tabIndex={-1}
       className={`fixed top-1/2 left-1/2 right-1/2 z-50 ${

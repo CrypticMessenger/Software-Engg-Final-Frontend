@@ -11,6 +11,7 @@ import React from "react";
 export default function ModalAddMember({ isVisible, setIsVisible }) {
   return (
     <div
+      data-testid="ModalAddMemberTest"
       id="authentication-modal"
       tabIndex={-1}
       aria-hidden="true"
@@ -22,6 +23,7 @@ export default function ModalAddMember({ isVisible, setIsVisible }) {
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
             type="button"
+            data-testid="modalButton"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
             data-modal-hide="authentication-modal"
             onClick={() => {
@@ -45,7 +47,7 @@ export default function ModalAddMember({ isVisible, setIsVisible }) {
             <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
               Add member
             </h3>
-            <form className="space-y-6" action="#">
+            <form className="space-y-6" action="#" data-testid="formTest">
               <div>
                 <label
                   htmlFor="email"

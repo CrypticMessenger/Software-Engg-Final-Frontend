@@ -20,7 +20,7 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
   };
 
   return (
-    <div>
+    <div data-testid="modalAddPostTest">
       <div
         id="authentication-modal"
         tabIndex={-1}
