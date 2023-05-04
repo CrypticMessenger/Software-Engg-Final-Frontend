@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../Providers/userProvider";
 import ButtonSecondary from "../common/ButtonSecondary";
 import { MdAdd } from "react-icons/md";
-import NavbarSubmenu from "./NavbarSubmenu";
 
 /**
  * A component that displays a navbar.
@@ -50,10 +49,6 @@ export default function Navbar({ children }) {
   const newFilteredGroup = groupsData.filter(
     (group) => group.isCreated === true
   );
-
-  // const createdGroupList = newFilteredGroup.map((group) => {
-  //   return <NavbarSubmenu group={group} />;
-  // });
 
   const [isVisible, setShowSidebar] = useState(false);
   const [isProfileVisible, setProfileVisible] = useState(false);

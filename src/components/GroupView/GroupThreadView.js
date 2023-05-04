@@ -110,7 +110,7 @@ export default function GroupThreadView() {
         author={item.author}
         authorEmail={item.authorEmail}
         authorProfile={item.authorProfile}
-        messageSubject={item.messageSubject + state.id}
+        messageSubject={item.messageSubject }
         messageContent={item.messageContent}
         messageDate={item.messageDate}
         messageTime={item.messageTime}
@@ -138,9 +138,9 @@ export default function GroupThreadView() {
     // fetch data from server
   }, []);
   return (
-    <>
+    <div data-testid="GroupThreadTest">
       {thread}
       <Discussion numComments={thread.length} />
-    </>
+    </div>
   );
 }

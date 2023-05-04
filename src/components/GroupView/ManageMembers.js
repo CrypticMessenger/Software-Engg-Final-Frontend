@@ -17,7 +17,7 @@ export default function ManageMembers() {
     document.title = "Manage Members";
   }, []);
   return (
-    <div>
+    <div data-testid="ManageMemberTest">
       <MemberView
         groupsData={memberData}
         tableHeaders={tableHeaders}

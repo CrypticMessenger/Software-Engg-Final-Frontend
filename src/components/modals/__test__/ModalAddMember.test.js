@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import ModalAddMember from "../ModalAddMember";
 import { shallow, mount } from "enzyme";
 

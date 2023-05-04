@@ -32,7 +32,7 @@ export default function Favourites() {
   }, []);
 
   return (
-    <div>
+    <div data-testid="FavouriteTest">
       <Grouplist
         groupsData={groupsData}
         tableHeaders={tableHeaders}

@@ -21,7 +21,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
+    <div data-testid="ForgotPasswordTest">
       <AuthForm {...props} />
     </div>
   );

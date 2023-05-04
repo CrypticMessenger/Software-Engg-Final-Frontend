@@ -23,7 +23,7 @@ export default function ApprovalRequest() {
       messageTime: "12:00",
     },
     {
-      id: 1,
+      id: 2,
       author: "John Doe1",
       authorEmail: "johnDoe@gmail.com",
       authorProfile:
@@ -38,7 +38,7 @@ export default function ApprovalRequest() {
   ]);
   const displayRequests = data.map((item) => {
     return (
-      <>
+      <div data-testid={`ApprovalRequestTest`+item.id}>
         <h1
           className="text-2xl font-bold text-gray-800 mt-2 bg-gray-100 p-2 rounded-t-lg
         ">
@@ -67,7 +67,7 @@ export default function ApprovalRequest() {
           icon1={<AiOutlineCheck color="green" />}
           icon2={<FaTimes color="red" />}
         />
-      </>
+      </div>
     );
   });
   useEffect(() => {

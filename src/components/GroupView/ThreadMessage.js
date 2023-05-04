@@ -90,7 +90,7 @@ export default function ThreadMessage({
   const formattedDate = pubdate.toLocaleDateString("en-US", options); // "Feb 8, 2022"c
   console.log(isExpanded);
   return (
-    <>
+    <div data-testid="ThreadMessageTest">
       {isHead ? (
         <h1
           key={key}
@@ -202,6 +202,6 @@ export default function ThreadMessage({
           </div>
         </article>
       </div>
-    </>
+    </div>
   );
 }

@@ -167,7 +167,7 @@ const GroupThreadsList = () => {
   }, []);
 
   return (
-    <>
+    <div data-testid="GroupThreadsListTest">
       <TabBar
         Tabs={tabLabels}
         activeTabs={activeTabs}
@@ -357,7 +357,7 @@ const GroupThreadsList = () => {
         activeTabs[tabLabels.indexOf("Joining Requests")] === 1 && (
           <JoiningRequest />
         )}
-    </>
+    </div>
   );
 };
 

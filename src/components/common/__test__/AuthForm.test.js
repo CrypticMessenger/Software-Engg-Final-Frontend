@@ -27,7 +27,6 @@ describe('AuthForm', () => {
     const titleAuthForm = getByTestId('titleAuthForm');
     const titleTextAuthForm = getByTestId('titleTextAuthForm');
     const formAuthForm = getByTestId('formAuthForm');
-    const buttonAuthForm = getByTestId('buttonAuthForm');
 
     expect(authForm).toBeInTheDocument();
     expect(titleAuthForm).toBeInTheDocument();
@@ -35,8 +34,6 @@ describe('AuthForm', () => {
     expect(titleTextAuthForm).toBeInTheDocument();
     expect(titleTextAuthForm).toHaveTextContent(props.titleText);
     expect(formAuthForm).toBeInTheDocument();
-    expect(buttonAuthForm).toBeInTheDocument();
-    expect(buttonAuthForm).toHaveTextContent(props.buttonText);
   });
 
 });

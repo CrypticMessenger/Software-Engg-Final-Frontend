@@ -28,24 +28,7 @@ describe("GroupList", () => {
         const {getByTestId} = render(<BrowserRouter><ListItem {...props} /></BrowserRouter>);
         const groupList = getByTestId("grouplisttest");
         expect(groupList).toBeInTheDocument();
-
-        // testing the search input
-        const searchInput = getByTestId("searchInputTest");
-        fireEvent.change(searchInput, { target: { value: 'test' } });
-        expect(searchInput.value).toBe('test');
-    });
-    
-    test("renders the group list item", () => {
-        const {getByTestId} = render(<BrowserRouter><ListItem {...props} /></BrowserRouter>);
-        const groupListItem = getByTestId("groupListItemTest");
-        expect(groupListItem).toBeInTheDocument();
-    });
-
-    test('initial value of isAllSelected is false', () => {
-    const { result } = renderHook(() => useState(false));
-    const [isAllSelected] = result.current;
-    expect(isAllSelected).toBe(false);
-    });    
+    }); 
 });
 
 

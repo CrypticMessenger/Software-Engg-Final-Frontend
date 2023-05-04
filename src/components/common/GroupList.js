@@ -107,9 +107,9 @@ export default function ListItem({ groupsData, tableHeaders }) {
   ));
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg" data-testid="grouplisttest">
       <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800">
-        <label htmlFor="table-search" className="sr-only">
+        <label htmlFor="table-search" className="sr-only" data-testid="searchInputTest">
           Search
         </label>
         <div className="relative flex ml-auto">
