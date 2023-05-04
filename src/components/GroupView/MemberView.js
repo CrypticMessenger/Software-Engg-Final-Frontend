@@ -1,6 +1,6 @@
 import { React, useState } from "react";
-import GroupListItem from "./GroupListItem";
 import Fuse from "fuse.js";
+import MemberListItem from "./MemberListItem";
 
 /**
  * A component that displays a list of groups.
@@ -21,7 +21,12 @@ import Fuse from "fuse.js";
  * tableHeaders={["groups", "join date", "subscription", ""]}
  * />
  */
-export default function ListItem({ groupsData, tableHeaders }) {
+export default function MemberView({
+  groupsData,
+  tableHeaders,
+  moreInfoRoute,
+  dropdownList,
+}) {
   const TableHeaders = tableHeaders.map((item, index) => {
     return (
       <th
@@ -94,15 +99,17 @@ export default function ListItem({ groupsData, tableHeaders }) {
     : groupsData;
 
   const listGroups = filteredGroupsData.map((group, index) => (
-    <GroupListItem
+    <MemberListItem
       name={group.name}
       email={group.email}
       imagePath={group.imagePath}
       joinDate={group.joinDate}
-      isCreated={group.isCreated} // decide if the user role do this.
+      isCreated={group.isCreated}
       handleRowSelect={handleRowSelect}
       key={index}
       isSelected={isRowSelected[group.email]}
+      moreInfoRoute={moreInfoRoute}
+      dropdownList={dropdownList}
     />
   ));
 

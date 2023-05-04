@@ -1,6 +1,18 @@
 import React from "react";
 import { MdAdd } from "react-icons/md";
 
+/**
+ * A general purpose button component with secondary styling.
+ * @param {string} type - The type of the button. (eg: submit)
+ * @param {string} children - The text to display inside the button.
+ * @param {string} style - The style to apply to the button. (eg: w-full)
+ * @param {function} onClick - The function to call when the button is clicked.
+ * @returns {JSX.Element} - A React component that displays a button with secondary styling.
+ * @example
+ * <ButtonSecondary type="submit" onClick={() => console.log("clicked")} style="w-full">
+ * Submit
+ * </ButtonSecondary>
+ */
 const ButtonSecondary = ({ type, children, style, onClick, testid }) => {
   return (
     <button

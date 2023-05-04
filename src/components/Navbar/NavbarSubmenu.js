@@ -1,6 +1,14 @@
 import { React, useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+
+/**
+ * Navbar Submenu
+ * @param {Object} group - The group object
+ * @returns {JSX.Element} A React component that displays a navbar submenu. for each group that's created by the user, ot has options to see approve joining requests and post requests.
+ * @example
+ * <NavbarSubmenu group={group} />
+ */
 export default function NavbarSubmenu({ group }) {
   const [isShown, setIsShown] = useState(false);
   return (
