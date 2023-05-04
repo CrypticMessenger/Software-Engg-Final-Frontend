@@ -8,14 +8,34 @@ import React, { useState } from "react";
  * @example
  * <ModalAddPost />
  */
-export default function ModalAddPost({ isVisible, setIsVisible }) {
+export default function ModalAddPost({ isVisible, setIsVisible ,groupId,groupLink }) {
   const [maxSubjectLength, setMaxSubjectLength] = useState(50);
   const [subjectCharCount, setSubjectCharCount] = useState(0);
   const [Subject, setSubject] = useState("");
   const [Body, setBody] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user.token;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(Subject, Body);
+    const res = fetch(`http://${groupLink}/thread/group/${groupId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+
+      body: JSON.stringify({
+        subject: Subject,
+        message: Body,
+      }),
+    });
+    console.log(res);
+    window.location.reload();
+
+
     setIsVisible(false);
   };
 

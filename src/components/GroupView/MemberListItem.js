@@ -21,9 +21,11 @@ import RoleType from "../common/RoleType";
  * @param {function} handleRowSelect - The function to call when the row is selected.
  * @param {string} key - The key of the row.
  * @param {string} moreInfoRoute - The route to navigate to when the user clicks on the group name.
+ * @param {array} dropdownList - The list of options to display in the dropdown menu.
+ * @param {boolean} showIcons - Whether to show the icons.
  * @returns {JSX.Element} - A React component that displays a single row in the group list.
  * @example
- * <GroupListItem
+ * <MemberListItem
  * name="Neil Sims"
  * email="john.doe@gmail.com"
  * imagePath="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80"

@@ -7,7 +7,35 @@ import PostButton from "./PostButton";
  * @example
  * <Discussion numComments={5} />
  */
-export default function Discussion({ numComments }) {
+export default function Discussion({ numComments , messageHeader,isReplyAll , parentID,url}) {
+
+  const handlePostClick = async(e) => {
+    e.preventDefault();
+    const message = e.target.comment.value;
+    console.log("Post button clicked", message);
+    const replyUrl= `http://${url}/message/${parentID}/`;
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user.token;
+
+    const response = await fetch(replyUrl, {
+      method: isReplyAll ? "POST" : "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({message }),
+    });
+    const data = await response.json();
+    console.log(data);
+
+    window.location.reload();
+    
+
+        
+  };
+
+
   return (
     <>
       <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">
@@ -17,7 +45,7 @@ export default function Discussion({ numComments }) {
               Discussion ({numComments})
             </h2>
           </div>
-          <PostButton />
+          <PostButton messageHeader={messageHeader} isDisabled={parentID===null} handleClick={handlePostClick} />
         </div>
       </section>
     </>

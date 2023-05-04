@@ -78,6 +78,8 @@ export default function ThreadMessage({
   option2,
   icon1,
   icon2,
+  handleOption1,
+  handleOption2,
 }) {
   const pubdate = new Date(messageDate);
   const options = { year: "numeric", month: "short", day: "numeric" };
@@ -186,6 +188,7 @@ export default function ThreadMessage({
             <div className="flex items-center mt-4 space-x-4">
               <button
                 type="button"
+                onClick={() => handleOption1(id,authorEmail)}
                 className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
                 <div className="mr-1">{icon1}</div>
                 {/* <icon1 className="mr-1" /> */}
@@ -193,6 +196,7 @@ export default function ThreadMessage({
               </button>
               <button
                 type="button"
+                onClick={() => handleOption2(id)}
                 className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
                 <div className="mr-1">{icon2}</div>
                 {/* <icon2 className="mr-1" /> */}

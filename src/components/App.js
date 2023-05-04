@@ -11,6 +11,7 @@ import GroupThreadView from "./GroupView/GroupThreadView";
 import ApprovalRequest from "./Navbar/ApprovalRequest";
 import JoiningRequest from "./Navbar/JoiningRequest";
 import GroupThreadsList from "./GroupView/GroupThreadsList";
+import { SearchGroups } from "./SearchGroups/SearchGroups";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/favourites" element={<Favourites />} />
+              <Route path="/searchGroups" element={<SearchGroups />} />
               <Route path="/group-info" element={<GroupThreadsList />} />
               <Route path="/group-thread-view" element={<GroupThreadView />} />
               <Route path="/approval-request" element={<ApprovalRequest />} />

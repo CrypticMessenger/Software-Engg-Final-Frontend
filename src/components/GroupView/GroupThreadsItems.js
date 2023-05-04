@@ -8,19 +8,19 @@ import { useNavigate } from "react-router-dom";
  * @param {object} columns - The columns object.
  * @returns {JSX.Element} - A React component that displays a single row in the group list.
  * @example
- * <GroupListItem
+ * <GroupThreadsItems
  * row={row}
  * columns={columns}
  * />
  */
-export default function GroupThreadsItems({ row, columns }) {
+export default function GroupThreadsItems({ row, columns,groupLink }) {
   const [isEditOptionsOpen, setIsEditOptionsOpen] = React.useState(false);
   const toggleEditOptions = () => {
     setIsEditOptionsOpen(!isEditOptionsOpen);
   };
   const navigate = useNavigate();
   const goToView = () => {
-    navigate("/group-thread-view", { state: { id: row.id } });
+    navigate("/group-thread-view", { state: { id: row.id ,groupLink:groupLink} });
   };
   return (
     <tr

@@ -10,9 +10,16 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const handleLogin = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
+    const user = userData.user;
+    const token = userData.access;
+    localStorage.setItem("user", JSON.stringify({ details:user, token }));
+    
+    setUser(user);
 
-    setUser(userData);
+    // localStorage.setItem("user", JSON.stringify(userData));
+
+    // console.log(userData);
+    // setUser(userData);
   };
 
   const handleLogout = () => {
@@ -22,7 +29,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser).details);
     }
   }, []);
 

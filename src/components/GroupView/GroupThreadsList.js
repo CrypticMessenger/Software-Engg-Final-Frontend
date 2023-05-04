@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Fuse from "fuse.js";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import GroupThreadsItems from "./GroupThreadsItems";
 import ModalAddPost from "../modals/ModalAddPost";
 import { MdAdd } from "react-icons/md";
@@ -19,22 +19,25 @@ import JoiningRequest from "../Navbar/JoiningRequest";
  * */
 const GroupThreadsList = () => {
   //get the information about roles inside use effect of this
+  // get state using use location
+  const groupId = useLocation().state.id;
+  const groupLink = useLocation().state.group_link;
   const [columns, setColumns] = useState([
     {
-      Header: "Sender Name",
-      accessor: "author",
+      Header: "Group Name",
+      accessor: "group_name",
     },
     {
       Header: "Thread Subject",
-      accessor: "messageSubject",
+      accessor: "subject",
     },
     {
-      Header: "Date",
-      accessor: "messageDate",
+      Header: "Updated At",
+      accessor: "updated_at",
     },
     {
-      Header: "Time",
-      accessor: "messageTime",
+      Header: "Updated By",
+      accessor: "updated_by",
     },
   ]);
 
@@ -45,9 +48,9 @@ const GroupThreadsList = () => {
       authorEmail: "johnDoe@gmail.com",
       authorProfile:
         "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      messageSubject: "Lorem ipsum dolt, consectetur adipiscing elit. ",
-      messageDate: "2021-08-01",
-      messageTime: "12:00",
+      subject: "Lorem ipsum dolt, consectetur adipiscing elit. ",
+      updated_at: "2021-08-01",
+      updated_by: "12:00",
       isHead: true,
       parentId: null,
     },
@@ -113,7 +116,7 @@ const GroupThreadsList = () => {
     ? searchResults.map((result) => result.item)
     : data;
   const rowData = filteredGroupsData.map((row) => (
-    <GroupThreadsItems key={row.id} row={row} columns={columns} />
+    <GroupThreadsItems key={row.id} row={row} columns={columns} groupLink={groupLink} />
   ));
 
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
@@ -132,7 +135,7 @@ const GroupThreadsList = () => {
   if (!allowManagePeople) {
     // remove members tab using string search
     tempTabLabels.splice(tempTabLabels.indexOf("Members"), 1);
-    tempTabLabels.splice(tempTabLabels.indexOf("Joining Requests"), 1);
+    tempTabLabels.splice(tempTabLabels.indexOf("Joining  Requests"), 1);
   }
   if (!allowMetadata) {
     // remove settings tab
@@ -162,8 +165,35 @@ const GroupThreadsList = () => {
   {
     console.log(tabLabels);
   }
+  
   useEffect(() => {
     document.title = "Group Threads";
+    console.log("here");
+    console.log(groupId);
+    console.log(groupLink);
+    const fetchGroupThreads = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user.token;
+        const response = await fetch(`http://${groupLink}/thread/group/${groupId}/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(),
+        });
+
+        // console.log(response);
+        const data1 = await response.json();
+        console.log("data",data1);
+        setData(data1);
+      } catch (error) {
+        console.log("Error: ", error);
+      }
+    }
+    fetchGroupThreads();
+
   }, []);
 
   return (
@@ -338,12 +368,14 @@ const GroupThreadsList = () => {
             <ModalAddPost
               isVisible={isPostModalOpen}
               setIsVisible={setIsPostModalOpen}
+              groupId={groupId}
+              groupLink={groupLink}
             />
           )}
         </section>
       )}
       {allowManagePeople && activeTabs[tabLabels.indexOf("Members")] === 1 && (
-        <ManageMembers />
+        <ManageMembers groupId={groupId} />
       )}
       {allowMetadata && activeTabs[tabLabels.indexOf("Settings")] === 1 && (
         <ManageSettings />

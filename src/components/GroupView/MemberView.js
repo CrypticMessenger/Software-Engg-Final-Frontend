@@ -6,6 +6,8 @@ import MemberListItem from "./MemberListItem";
  * A component that displays a list of groups.
  * @param {Array} groupsData - An array of objects containing the data for each group.
  * @param {Array} tableHeaders - An array of strings containing the table headers.
+ * @param {String} moreInfoRoute - The route to the page that displays more information about a group.
+ * @param {Array} dropdownList - An array of objects containing the data for each dropdown item.
  * @returns {JSX.Element} - A React component that displays a list of groups.
  * @example
  *  const groupsData = [{
@@ -16,7 +18,7 @@ import MemberListItem from "./MemberListItem";
  *     isCreated: true,
  *   }]
  *
- * <GroupList
+ * <MemberView
  * groupsData={groupsData}
  * tableHeaders={["groups", "join date", "subscription", ""]}
  * />
