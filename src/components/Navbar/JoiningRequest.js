@@ -2,6 +2,13 @@ import { React, useState, useEffect } from "react";
 import ThreadMessage from "../GroupView/ThreadMessage";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
+
+/**
+ * A component that displays a message for a specific group for a specific user to join the group
+ * @returns {JSX.Element} A React component that displays a message for a specific group for a specific user to join the group
+ * @example
+ * <JoiningRequest />
+ */
 export default function JoiningRequest() {
   const [data, setData] = useState([
     {
@@ -63,6 +70,7 @@ export default function JoiningRequest() {
   });
   useEffect(() => {
     // get data from api
+    document.title = "Joining requests";
   }, []);
   console.log(displayRequests);
 

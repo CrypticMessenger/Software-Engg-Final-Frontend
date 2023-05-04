@@ -8,7 +8,7 @@ import React from "react";
  * dropdownList={["Each Email", "Digest", "Abridged", "No email"]}
  * />
  */
-export default function SubscriptionType({ dropdownList }) {
+export default function RoleType({ dropdownList }) {
   const [isVisible, setIsVisible] = React.useState(false);
   const [selected, setSelected] = React.useState(dropdownList[0]);
   const toggleVisibility = () => setIsVisible(!isVisible);

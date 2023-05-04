@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 
+/**
+ * A component that displays a modal for adding a post.
+ * @param {bool} isVisible - Whether the modal is visible.
+ * @param {function} setIsVisible - A function that toggles the visibility of the modal.
+ * @returns {JSX.Element} A React component that displays a modal for adding a post.
+ * @example
+ * <ModalAddPost />
+ */
 export default function ModalAddPost({ isVisible, setIsVisible }) {
+  const [maxSubjectLength, setMaxSubjectLength] = useState(50);
+  const [subjectCharCount, setSubjectCharCount] = useState(0);
   const [Subject, setSubject] = useState("");
   const [Body, setBody] = useState("");
   const handleSubmit = (e) => {
@@ -8,6 +18,7 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
     console.log(Subject, Body);
     setIsVisible(false);
   };
+
   return (
     <div>
       <div
@@ -54,11 +65,18 @@ export default function ModalAddPost({ isVisible, setIsVisible }) {
                     type="text"
                     name="subject"
                     id="subject"
+                    maxLength={50}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Start a new discussion... 👋🏻"
-                    onChange={(e) => setSubject(e.target.value)}
+                    onChange={(e) => {
+                      setSubject(e.target.value);
+                      setSubjectCharCount(e.target.value.length);
+                    }}
                     required
                   />
+                  <p className="text-right text-xs text-gray-500 dark:text-gray-400">
+                    {subjectCharCount}/{maxSubjectLength}
+                  </p>
                 </div>
                 <div>
                   <label

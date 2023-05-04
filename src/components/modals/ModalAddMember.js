@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * A component that displays a modal for adding a member to a group.
+ * @param {boolean} isVisible - A boolean that determines whether the modal is visible or not.
+ * @param {function} setIsVisible - A function that sets the visibility of the modal.
+ * @returns {JSX.Element} A React component that displays a modal for adding a member to a group.
+ * @example
+ * <ModalAddMember isVisible={isVisible} setIsVisible={setIsVisible} />
+ */
 export default function ModalAddMember({ isVisible, setIsVisible }) {
   return (
     <div

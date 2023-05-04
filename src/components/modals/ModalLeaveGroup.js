@@ -1,5 +1,13 @@
 import React from "react";
 
+/**
+ * A component that displays a modal for leaving a group.
+ * @param {boolean} isVisible - A boolean that determines whether the modal is visible or not.
+ * @param {function} setIsVisible - A function that sets the visibility of the modal.
+ * @returns {JSX.Element} A React component that displays a modal for leaving a group.
+ * @example
+ * <ModalLeaveGroup isVisible={isVisible} setIsVisible={setIsVisible} />
+ */
 export default function ModalLeaveGroup({ isVisible, setIsVisible }) {
   return (
     <div

@@ -2,7 +2,18 @@ import React from "react";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-export default function GroupThreads({ row, columns }) {
+/**
+ * A component that displays a single row in the GroupThreadsList component.
+ * @param {object} row - The row object.
+ * @param {object} columns - The columns object.
+ * @returns {JSX.Element} - A React component that displays a single row in the group list.
+ * @example
+ * <GroupListItem
+ * row={row}
+ * columns={columns}
+ * />
+ */
+export default function GroupThreadsItems({ row, columns }) {
   const [isEditOptionsOpen, setIsEditOptionsOpen] = React.useState(false);
   const toggleEditOptions = () => {
     setIsEditOptionsOpen(!isEditOptionsOpen);
@@ -25,7 +36,9 @@ export default function GroupThreads({ row, columns }) {
             {column.Cell ? column.Cell({ value }) : value}
           </th>
         ) : (
-          <td key={column.accessor} className="px-4 py-3">
+          <td
+            key={column.accessor}
+            className="px-4 py-3 max-w-xs overflow-hidden text-ellipsis">
             {column.Cell ? column.Cell({ value }) : value}
           </td>
         );

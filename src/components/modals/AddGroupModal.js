@@ -1,5 +1,8 @@
 import React from "react";
-
+/**
+ * A component that displays a modal for adding a group.
+ * @returns {JSX.Element} A React component that displays a modal for adding a group.
+ */
 const AddGroupModal = () => {
   return (
     <div>

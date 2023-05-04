@@ -1,5 +1,12 @@
 import PostButton from "./PostButton";
 
+/**
+ * Discussion component - for the thread view page, in which user can reply to already existing posts or create a new post.
+ * @param {number} numComments - The number of comments in the thread.
+ * @returns {JSX.Element} - A React component that displays the Discussion component.
+ * @example
+ * <Discussion numComments={5} />
+ */
 export default function Discussion({ numComments }) {
   return (
     <>
