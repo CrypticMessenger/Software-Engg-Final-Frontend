@@ -5,11 +5,11 @@ import Login from '../Login';
 
 describe('Login component', () => {
     it('renders correctly', () => {
-        // const { getByTestId } = render(<BrowserRouter><Login /></BrowserRouter>)
-        // const register = getByTestId('Login')
-        // expect(register).toBeInTheDocument()
+        const { getByTestId } = render(<BrowserRouter><Login /></BrowserRouter>)
+        const register = getByTestId('Login')
+        expect(register).toBeInTheDocument()
 
-        const component =  render(<BrowserRouter><Login /></BrowserRouter>)
-        console.log(component);
+        // const component =  render(<BrowserRouter><Login /></BrowserRouter>)
+        // console.log(component);
     })    
 })
