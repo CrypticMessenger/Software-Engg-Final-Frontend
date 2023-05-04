@@ -1,5 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+/** 
+ * display the tabs in on clicking groups
+ * @param {Array} Tabs - array of tabs
+ * @param {Array} activeTabs - array of active tabs a boolean. 1 for active and 0 for inactive
+ * @param {Function} handleTabClick - function to handle tab click
+ */
+
+
 export default function TabBar({ Tabs, activeTabs, handleTabClick }) {
   console.log(Tabs);
   console.log(activeTabs);

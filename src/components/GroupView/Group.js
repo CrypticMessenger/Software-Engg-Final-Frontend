@@ -7,7 +7,13 @@ import GroupThreads from "./GroupThreadsItems";
 import ModalAddPost from "../modals/ModalAddPost";
 import { MdAdd } from "react-icons/md";
 import ButtonSecondary from "../common/ButtonSecondary";
-
+/** 
+ * Displays all the conversations in a groups i.e. all the thread heads.
+ * @returns {JSX.Element} - Rendered component i.e. a list of all the thread heads.
+ * @example
+ * <Group />
+ * 
+ */
 const Group = () => {
   const [columns, setColumns] = useState([
     {

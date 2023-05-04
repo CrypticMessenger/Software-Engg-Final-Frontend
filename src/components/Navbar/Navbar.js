@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { HiUserGroup } from "react-icons/hi";
-import { FaStar } from "react-icons/fa";
+import {  FaSearchPlus, FaStar } from "react-icons/fa";
 import { VscListSelection } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Providers/userProvider";
 import ButtonSecondary from "../common/ButtonSecondary";
 import { MdAdd } from "react-icons/md";
-
+import ModalCreateGroup from "../modals/ModalCreateGroup";
 /**
  * A component that displays a navbar.
  * @param {Object} children The children of the component.
@@ -52,12 +52,22 @@ export default function Navbar({ children }) {
 
   const [isVisible, setShowSidebar] = useState(false);
   const [isProfileVisible, setProfileVisible] = useState(false);
+  const { handleLogout } = useContext(UserContext);
   const toggleSidebar = () => {
     setShowSidebar(!isVisible);
   };
   const toggleProfile = () => {
     setProfileVisible(!isProfileVisible);
   };
+  const signOut = () => {
+    handleLogout();
+    toggleProfile();
+  };
+  const [toggleCreateGroup, setToggleCreateGroup] = useState(false);
+  const toggleCreateGroupModal = () => {
+    setToggleCreateGroup(!toggleCreateGroup);
+  };
+    
   const { user } = useContext(UserContext);
   return (
     <>
@@ -210,7 +220,7 @@ export default function Navbar({ children }) {
                           to="/login"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                           role="menuitem"
-                          onClick={toggleProfile}>
+                          onClick={signOut}>
                           Sign out
                         </Link>
                       </li>
@@ -231,7 +241,7 @@ export default function Navbar({ children }) {
             <ul className="space-y-2 font-medium">
               {/* Add new groupt button */}
               <li>
-                <ButtonSecondary>
+                <ButtonSecondary onClick={toggleCreateGroupModal}>
                   <MdAdd className="w-5 h-5 mr-2" />
                   Add New Group
                 </ButtonSecondary>
@@ -255,6 +265,14 @@ export default function Navbar({ children }) {
                   <span className="ml-3">Favourite Groups</span>
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/searchGroups"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <FaSearchPlus />
+                  <span className="ml-3">Search Groups</span>
+                </Link>
+              </li>
               <hr className="my-2" />
               {/* {createdGroupList} */}
             </ul>
@@ -264,6 +282,7 @@ export default function Navbar({ children }) {
           <div className="p-4 mt-14">{children}</div>
         </div>
       </div>
+      {toggleCreateGroup && <ModalCreateGroup isVisible={toggleCreateGroup} setIsVisible={setToggleCreateGroup} />}
     </>
   );
 }

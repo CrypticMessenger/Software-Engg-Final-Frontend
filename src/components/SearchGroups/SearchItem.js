@@ -1,27 +1,25 @@
 import React from "react";
-import { IoExitOutline } from "react-icons/io5";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import SubscriptionType from "./SubscriptionType";
-import { AiOutlineSetting } from "react-icons/ai";
-import { MdPersonAddAlt } from "react-icons/md";
+
 import { useNavigate } from "react-router-dom";
 
-import ModalLeaveGroup from "../modals/ModalLeaveGroup";
-import ModalAddMember from "../modals/ModalAddMember";
+
+import ButtonPrimary from "../common/ButtonPrimary";
 
 /**
  * A component that displays a single row in the group list.
  * @param {string} name - The name of the group.
  * @param {string} email - The email of the group.
- * @param {string} imagePath - The path to the image of the group.
+ * @param {string} imagePath - The image path of the group.
  * @param {string} joinDate - The date the user joined the group.
+ * @param {boolean} isPublic - Whether the group is public or private.
  * @param {boolean} isCreated - Whether the user created the group.
- * @param {boolean} isSelected - Whether the group is selected.
+ * @param {boolean} isSelected - Whether the row is selected.
  * @param {function} handleRowSelect - The function to call when the row is selected.
  * @param {string} key - The key of the row.
+ * @param {function} handleJoinClick - The function to call when the join button is clicked.
  * @returns {JSX.Element} - A React component that displays a single row in the group list.
  * @example
- * <GroupListItem
+ * <SearchItem
  * name="Neil Sims"
  * email="john.doe@gmail.com"
  * imagePath="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80"
@@ -33,27 +31,27 @@ import ModalAddMember from "../modals/ModalAddMember";
  * />
  *
  */
-export default function GroupListItem({
+export default function SearchItem({
   id,
   name,
   email,
   imagePath,
   joinDate,
+  isPublic,
   isCreated,
   isSelected,
   handleRowSelect,
   key,
-  group_link,
+  handleJoinClick,
 }) {
   const navigate = useNavigate();
   const [isFavourite, setIsFavourite] = React.useState(false);
   const handleFavoriteClick = () => {
     setIsFavourite(!isFavourite);
   };
-  const getGroupInfo = (id) => {
+  const getGroupInfo = () => {
     console.log("Get Group Info");
-    navigate("/group-info", { state: { id: id, group_link: group_link } });
-    // can pass information about the roles here
+    navigate("/group-info"); // can pass information about the roles here
   };
   const dropdownList = ["Each Email", "Digest", "Abridged", "No email"];
   const [isExitVisible, setIsExitVisible] = React.useState(false);
@@ -65,7 +63,7 @@ export default function GroupListItem({
     setIsExitVisible(!isExitVisible);
   };
   return (
-    <div data-testid="groupListItemTest">
+    <>
       <tr
         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         key={key}>
@@ -84,7 +82,7 @@ export default function GroupListItem({
           </div>
         </td>
         <th
-          onClick={() => getGroupInfo(id)}
+          onClick={getGroupInfo}
           scope="row"
           className="cursor-pointer flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           <img
@@ -98,62 +96,20 @@ export default function GroupListItem({
           </div>
         </th>
         <td className="px-6 py-4">{joinDate}</td>
+        <td className="px-6 py-4">{isPublic}</td>
         <td className="px-6 py-4">
-          <SubscriptionType dropdownList={dropdownList} />
+          {/* Join button */}
+          <ButtonPrimary
+            onClick={() => {
+              handleJoinClick(id)
+            }}
+          >
+            Join
+          </ButtonPrimary>
+          
         </td>
 
-        <td className="px-6 py-4">
-          <div className="flex items-center justify-end space-x-2">
-            {isCreated && (
-              <AiOutlineSetting
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={() => {}}
-                title="Settings"
-              />
-            )}
-            {isCreated && (
-              <MdPersonAddAlt
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={() => {
-                  setIsAddPeopleVisible(!isAddPeopleVisible);
-                }}
-                title="Add Person"
-              />
-            )}
-            <IoExitOutline
-              className="w-7 h-7 p-1  rounded-full cursor-pointer"
-              onClick={() => {
-                setIsExitVisible(!isExitVisible);
-              }}
-              title="Exit"
-            />
-            {isFavourite ? (
-              <AiFillStar
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={handleFavoriteClick}
-                title="Remove from Favorites"
-              />
-            ) : (
-              <AiOutlineStar
-                className="w-7 h-7 p-1  rounded-full cursor-pointer"
-                onClick={handleFavoriteClick}
-                title="Add to Favorites"
-                x
-              />
-            )}
-            <ModalLeaveGroup
-              isVisible={isExitVisible}
-              setIsVisible={setIsExitVisible}
-            />
-            <ModalAddMember
-              isVisible={isAddPeopleVisible}
-              setIsVisible={setIsAddPeopleVisible}
-            />
-            {/* {modalLeaveGroup(isExitVisible, setIsExitVisible)} */}
-            {/* {modalAddMember(isAddPeopleVisible, setIsAddPeopleVisible)} */}
-          </div>
-        </td>
       </tr>
-    </div>
+    </>
   );
 }

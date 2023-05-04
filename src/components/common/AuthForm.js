@@ -14,6 +14,7 @@ import Input from "./Input";
  * @param {string} alternativeLink - The route to which the alternative link links to. (eg: /register)
  * @param {string} alternativeText - The text to display on the alternative link. (eg: Register)
  * @param {string} error - The error message to display.
+ * @param {string} isRegister -  Whether the form is for registration.
  * @returns {JSX.Element} - A React component that displays a form for authentication, based on the props passed.
  * @example
  * <AuthForm
@@ -40,6 +41,7 @@ const AuthForm = ({
   alternativeLink,
   alternativeText,
   error,
+  isRegister,
 }) => {
   return (
     <section className="bg-gray-50 dark:bg-gray-900" data-testid="authForm">
@@ -60,9 +62,20 @@ const AuthForm = ({
             </h1>
             <form
               className="space-y-4 md:space-y-6"
-              action="#"
-              data-testid="formAuthForm">
+              data-testid="formAuthForm"
+              onSubmit={onSubmit}
+              >
               <div>
+                {isRegister && (
+                  <>
+                  <Input label="username" placeholder="username" error={error} />
+                  <Input label="first_name" placeholder="firstname" error={error} />
+                  <Input label="last_name" placeholder="lastname" error={error} />
+                  </>
+                )}
+
+
+
                 <Input label="Email" placeholder="email" error={error} />
                 <Input label="Password" placeholder="*******" error={error} />
               </div>
@@ -93,7 +106,7 @@ const AuthForm = ({
               </div>
               <ButtonPrimary
                 type="submit"
-                onClick={onSubmit}
+                // onClick={onSubmit}
                 // eslint-disable-next-line react/style-prop-object
                 style={"w-full h-12"}>
                 {buttonText}

@@ -4,8 +4,8 @@ import React from "react";
  * @param {string[]} dropdownList - The list of items to display in the dropdown.
  * @returns {JSX.Element} - A React component that displays a dropdown menu with radio buttons.
  * @example
- * <SubscriptionType
- * dropdownList={["Each Email", "Digest", "Abridged", "No email"]}
+ * <RoleType
+ * dropdownList={["admin", "member", "custom_role"]}
  * />
  */
 export default function RoleType({ dropdownList }) {

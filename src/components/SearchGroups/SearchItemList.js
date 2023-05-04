@@ -1,11 +1,12 @@
 import { React, useState } from "react";
-import GroupListItem from "./GroupListItem";
 import Fuse from "fuse.js";
+import SearchItem from "./SearchItem";
 
 /**
  * A component that displays a list of groups.
  * @param {Array} groupsData - An array of objects containing the data for each group.
  * @param {Array} tableHeaders - An array of strings containing the table headers.
+ * @param {Function} onClick - A function that is called when a group is clicked.
  * @returns {JSX.Element} - A React component that displays a list of groups.
  * @example
  *  const groupsData = [{
@@ -16,12 +17,13 @@ import Fuse from "fuse.js";
  *     isCreated: true,
  *   }]
  *
- * <GroupList
+ * <SearchItemList
  * groupsData={groupsData}
  * tableHeaders={["groups", "join date", "subscription", ""]}
+ * onClick = {() => {}}
  * />
  */
-export default function ListItem({ groupsData, tableHeaders }) {
+export default function SearchItemList({ groupsData, tableHeaders,handleJoinClick }) {
   const TableHeaders = tableHeaders.map((item, index) => {
     return (
       <th
@@ -94,24 +96,25 @@ export default function ListItem({ groupsData, tableHeaders }) {
     : groupsData;
 
   const listGroups = filteredGroupsData.map((group, index) => (
-    <GroupListItem
-      id={group.id}
+    <SearchItem
+    id={group.id}
       name={group.name}
       email={group.email ?? "N/A"}
       imagePath={group.imagePath ?? "https://www.gkseries.com/blog/wp-content/uploads/2020/11/IIT-Ropar-2048x1534.jpg"}
-      joinDate={group.db_region}
-      isCreated={group.member.role.manage_members && group.member.role.manage_content && group.member.role.manage_metadata}
+      joinDate={group.is_public_join ? "Yes" : "No"}
+      isPublic={group.is_public_view ? "Public" : "Private"}
+      isCreated={true}
       handleRowSelect={handleRowSelect}
       key={group.id}
       isSelected={isRowSelected[group.email]}
-      group_link={group.host_website}
+      handleJoinClick={handleJoinClick}
     />
   ));
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg" data-testid="grouplisttest">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800">
-        <label htmlFor="table-search" className="sr-only" data-testid="searchInputTest">
+        <label htmlFor="table-search" className="sr-only">
           Search
         </label>
         <div className="relative flex ml-auto">
