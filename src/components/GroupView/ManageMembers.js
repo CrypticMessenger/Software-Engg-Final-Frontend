@@ -12,7 +12,7 @@ export default function ManageMembers({groupId}) {
   const memberData = [
     {
       name: "Neil Sims",
-      email: "neil.sims@flowbite.com",
+      email: "neil.sims@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       
       joinDate: "Nov 10, 2024",

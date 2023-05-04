@@ -8,28 +8,28 @@ export const SearchGroups = () => {
     // const groupsData = [
     //   {
     //     name: "Neil Sims",
-    //     email: "neil.sims@flowbite.com",
+    //     email: "neil.sims@SubPubNet.com",
     //     imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
     //     joinDate: "Nov 10, 2024",
     //     isCreated: true, // set to true if user is the creator of the group ( or similar role)
     //   },
     //   {
     //     name: "blast you",
-    //     email: "neil.sim2s@flowbite.com",
+    //     email: "neil.sim2s@SubPubNet.com",
     //     imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
     //     joinDate: "Nov 10, 2024",
     //     isCreated: false,
     //   },
     //   {
     //     name: "Neil Sims",
-    //     email: "neil.sim5s@flowbite.com",
+    //     email: "neil.sim5s@SubPubNet.com",
     //     imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
     //     joinDate: "Nov 10, 2024",
     //     isCreated: true,
     //   },
     //   {
     //     name: "Neil Si",
-    //     email: "neil.si3ms@flowbite.com",
+    //     email: "neil.si3ms@SubPubNet.com",
     //     imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
     //     joinDate: "Nov 10, 2024",
     //     isCreated: false,
@@ -75,11 +75,9 @@ export const SearchGroups = () => {
         setGroupsData(data);
       }
       fetchData();
-  
     }, []);
     return (
-      <>
-        <div data-testid="dashboard">
+        <div data-testid="searchGroupsTest">
           <SearchItemList
             groupsData={groupsData}
             tableHeaders={tableHeaders}
@@ -88,6 +86,5 @@ export const SearchGroups = () => {
             handleJoinClick={handleJoinClick}
           />
         </div>
-      </>
     );
 }

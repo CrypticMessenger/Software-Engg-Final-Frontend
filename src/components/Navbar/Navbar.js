@@ -18,28 +18,28 @@ export default function Navbar({ children }) {
   const groupsData = [
     {
       name: "Neil Sims",
-      email: "neil.sims@flowbite.com",
+      email: "neil.sims@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: true,
     },
     {
       name: "blast you",
-      email: "neil.sim2s@flowbite.com",
+      email: "neil.sim2s@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: false,
     },
     {
       name: "Neil Sims",
-      email: "neil.sim5s@flowbite.com",
+      email: "neil.sim5s@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: true,
     },
     {
       name: "Neil Si",
-      email: "neil.si3ms@flowbite.com",
+      email: "neil.si3ms@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: false,
@@ -108,12 +108,12 @@ export default function Navbar({ children }) {
                 </button>
                 <Link to="/dashboard" className="flex ml-2 md:mr-24">
                   <img
-                    src="https://flowbite.com/docs/images/logo.svg"
+                    src="https://SubPubNet.com/docs/images/logo.svg"
                     className="h-8 mr-3"
-                    alt="FlowBite Logo"
+                    alt="SubPubNet Logo"
                   />
                   <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                    Flowbite
+                  SubPubNet
                   </span>
                 </Link>
               </div>
@@ -134,7 +134,7 @@ export default function Navbar({ children }) {
                         onClick={toggleProfile}>
                         <img
                           className="w-8 h-8 rounded-full"
-                          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                          src="https://SubPubNet.com/docs/images/people/profile-picture-5.jpg"
                           alt="user photo"
                         />
                       </button>
