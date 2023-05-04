@@ -12,7 +12,7 @@ describe("ButtonSecondary", () => {
 
     it("should render ButtonSecondary component", () => {    
         const { getByTestId } = render(<ButtonSecondary {...props} />);
-        const buttonSecondary = getByTestId("button-secondary");
+        const buttonSecondary = getByTestId("button");
         expect(buttonSecondary).toBeInTheDocument();
     });
 });

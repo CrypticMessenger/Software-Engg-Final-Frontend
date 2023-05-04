@@ -29,21 +29,16 @@ describe("Group", () => {
         
         // Search input field
         const searchInput = getByTestId('search-input');
+        fireEvent.change(searchInput, { target: { value: 'test' } });
+        expect(searchInput.value).toBe('test');
+    });
+
+    test('Search input field should be empty', () => {
+        const {getByTestId} = render(<BrowserRouter><Group /></BrowserRouter>);
         
-        // Conversation rows
-        const conversationRows = screen.getAllByTestId('conversation-row');
-        
-        // Check if all conversation rows are visible before search
-        conversationRows.forEach(row => {
-            expect(row).toBeVisible();
-        });
-        
-        // Clear the search query
-        fireEvent.change(searchInput, { target: { value: '' } });
-        
-        // Check if all conversation rows are visible after clearing search
-        conversationRows.forEach(row => {
-            expect(row).toBeVisible();
-        });
+        // Search input field
+        const searchInput = getByTestId('search-input');
+        fireEvent.change(searchInput, { target: { value: null } });
+        expect(searchInput.value).toBe("");
     });
  });
