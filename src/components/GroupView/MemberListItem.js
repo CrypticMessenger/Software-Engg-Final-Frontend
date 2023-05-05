@@ -46,6 +46,7 @@ export default function MemberListItem({
   isSelected,
   handleRowSelect,
   key,
+  role,
   moreInfoRoute,
   dropdownList,
   showIcons,
@@ -102,9 +103,10 @@ export default function MemberListItem({
           </div>
         </th>
         <td className="px-6 py-4">{joinDate}</td>
-        <td className="px-6 py-4">
+        <td className="px-6 py-4">{role}</td>
+        {/* <td className="px-6 py-4">
           <RoleType dropdownList={dropdownList} />
-        </td>
+        </td> */}
 
         <td className="px-6 py-4">
           {showIcons && (

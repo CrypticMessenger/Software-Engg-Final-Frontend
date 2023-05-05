@@ -104,14 +104,15 @@ export default function MemberView({
     <MemberListItem
       name={group.name}
       email={group.email}
-      imagePath={group.imagePath}
-      joinDate={group.joinDate}
+      imagePath={group.imagePath ?? "https://www.gkseries.com/blog/wp-content/uploads/2020/11/IIT-Ropar-2048x1534.jpg"}
+      joinDate={group.email}
       isCreated={group.isCreated}
+      role={group?.Role?.role_name}
       handleRowSelect={handleRowSelect}
       key={index}
       isSelected={isRowSelected[group.email]}
       moreInfoRoute={moreInfoRoute}
-      dropdownList={dropdownList}
+      // dropdownList={dropdownList}
     />
   ));
 

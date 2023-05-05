@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DJANGO_API_URL } from "../../constants/urls";
 
 /**
  * A component that displays a modal for adding a post.
@@ -17,8 +18,32 @@ export default function ModalCreateGroup({ isVisible, setIsVisible }) {
   const [anyoneCanJoin, setAnyoneCanJoin] = useState("");
   const [db, setDb] = useState("");
  
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+
+    // send to backend
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user.token;
+
+    console.log(Name, Email, Password, visibility, anyoneCanJoin, db)
+    const res = await fetch(`${DJANGO_API_URL}group/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            name: Name,
+            description: Email, 
+            password: Password,
+            is_public_view: visibility === "public" ? true : false,
+            is_public_join: anyoneCanJoin === "yes" ? true : false,
+            db_region: db,
+        }),
+    });
+    const data = await res.json();
+    console.log(data);
+    // close modal
     setIsVisible(false);
   };
 
@@ -86,7 +111,7 @@ export default function ModalCreateGroup({ isVisible, setIsVisible }) {
                   <label
                     htmlFor="group-email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Group email
+                    Description
                   </label>
                   <input
                     type="text"
@@ -94,7 +119,7 @@ export default function ModalCreateGroup({ isVisible, setIsVisible }) {
                     id="subject"
                     maxLength={50}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Add group email... 👋🏻"
+                    placeholder="Add group description... 👋🏻"
                     onChange={(e) => {
                       setEmail(e.target.value);
 
@@ -200,64 +225,78 @@ export default function ModalCreateGroup({ isVisible, setIsVisible }) {
     Database region:
   </label>
   <br/>
-  <label htmlFor="south" className="flex items-center mr-8 mb-2">
+  <label htmlFor="groups_ind" className="flex items-center mr-8 mb-2">
     <input
       className="mr-2"
       type="radio"
-      id="south"
+      id="groups_ind"
       name="db"
-      value="south"
+      value="groups_ind"
       onChange={(e) => {
         setDb(e.target.value);
       }}
       required
     />
-    <span>South</span>
+    <span>groups_ind</span>
   </label>
 
-  <label htmlFor="north" className="flex items-center mr-8 mb-2">
+  <label htmlFor="groups_china" className="flex items-center mr-8 mb-2">
     <input
       className="mr-2"
       type="radio"
-      id="north"
+      id="groups_china"
       name="db"
-      value="north"
+      value="groups_china"
       onChange={(e) => {
         setDb(e.target.value);
       }}
       required
     />
-    <span>North</span>
+    <span>groups_china</span>
   </label>
 
-  <label htmlFor="east" className="flex items-center mr-8 mb-2">
+  <label htmlFor="groups_us" className="flex items-center mr-8 mb-2">
     <input
       className="mr-2"
       type="radio"
-      id="east"
+      id="groups_us"
       name="db"
-      value="east"
+      value="groups_us"
       onChange={(e) => {
         setDb(e.target.value);
       }}
       required
     />
-    <span>East</span>
+    <span>groups_us</span>
   </label>
 
-  <label htmlFor="west" className="flex items-center mr-8 mb-2">
+  <label htmlFor="groups_eu" className="flex items-center mr-8 mb-2">
     <input
       className="mr-2"
       type="radio"
-      id="west"
+      id="groups_eu"
       name="db"
-      value="west"
+      value="groups_eu"
       onChange={(e) => {
         setDb(e.target.value);
       }}
       required
     />
-    <span>West</span>
+    <span>groups_eu</span>
+  </label>
+  <label htmlFor="groups_china" className="flex items-center mr-8 mb-2">
+    <input
+      className="mr-2"
+      type="radio"
+      id="groups_china"
+      name="db"
+      value="groups_china"
+      onChange={(e) => {
+        setDb(e.target.value);
+      }}
+      required
+    />
+    <span>groups_china</span>
   </label>
 </div>
 

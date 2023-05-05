@@ -41,50 +41,7 @@ const GroupThreadsList = () => {
     },
   ]);
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      author: "John Doe1",
-      authorEmail: "johnDoe@gmail.com",
-      authorProfile:
-        "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      subject: "Lorem ipsum dolt, consectetur adipiscing elit. ",
-      updated_at: "2021-08-01",
-      updated_by: "12:00",
-      isHead: true,
-      parentId: null,
-    },
-    {
-      id: 2,
-      author: "John arshi1",
-      authorEmail: "johnDoe@gmail.com",
-      authorProfile:
-        "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      messageSubject:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-      messageContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc sapien aliquet urna, vitae aliqua",
-      messageDate: "2021-08-01",
-      messageTime: "12:00",
-      isHead: true,
-      parentId: null,
-    },
-    {
-      id: 3,
-      author: "John sukhi1",
-      authorEmail: "johnDoe@gmail.com",
-      authorProfile:
-        "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg",
-      messageSubject:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-      messageContent:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc sapien aliquet urna, vitae aliqua",
-      messageDate: "2021-08-01",
-      messageTime: "12:00",
-      isHead: true,
-      parentId: null,
-    },
-  ]);
+  const [data, setData] = useState([]);
   const allowMetadata = true;
   const allowManageContent = false;
   const allowManagePeople = true;
@@ -157,14 +114,10 @@ const GroupThreadsList = () => {
   );
 
   const handleTabClick = (index) => {
+    console.log(activeTabs.map((tab, i) => (i === index ? 1 : 0)))
     setActiveTabs(activeTabs.map((tab, i) => (i === index ? 1 : 0)));
   };
-  {
-    console.log(activeTabs);
-  }
-  {
-    console.log(tabLabels);
-  }
+
   
   useEffect(() => {
     document.title = "Group Threads";
@@ -375,7 +328,7 @@ const GroupThreadsList = () => {
         </section>
       )}
       {allowManagePeople && activeTabs[tabLabels.indexOf("Members")] === 1 && (
-        <ManageMembers groupId={groupId} />
+        <ManageMembers groupId={groupId} groupLink={groupLink} />
       )}
       {allowMetadata && activeTabs[tabLabels.indexOf("Settings")] === 1 && (
         <ManageSettings />

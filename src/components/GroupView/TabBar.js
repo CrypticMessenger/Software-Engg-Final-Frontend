@@ -18,7 +18,7 @@ export default function TabBar({ Tabs, activeTabs, handleTabClick }) {
       return (
         <li className="mr-2">
           <Link
-            onClick={() => handleTabClick(index)}
+            onClick={(e) =>{e.preventDefault(); handleTabClick(index)}}
             // to="/"
             aria-current="page"
             className="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg dark:bg-gray-800 dark:text-blue-500">
@@ -30,7 +30,7 @@ export default function TabBar({ Tabs, activeTabs, handleTabClick }) {
       return (
         <li className="mr-2">
           <Link
-            onClick={() => handleTabClick(index)}
+            onClick={(e) =>{e.preventDefault(); handleTabClick(index)}}
             // to="/"
             className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">
             {tab}

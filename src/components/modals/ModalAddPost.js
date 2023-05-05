@@ -19,8 +19,7 @@ export default function ModalAddPost({ isVisible, setIsVisible ,groupId,groupLin
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Subject, Body);
-    const res = fetch(`http://${groupLink}/thread/group/${groupId}`, {
+    const res = fetch(`http://${groupLink}/thread/group/${groupId}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +32,7 @@ export default function ModalAddPost({ isVisible, setIsVisible ,groupId,groupLin
       }),
     });
     console.log(res);
-    window.location.reload();
+    // window.location.reload();
 
 
     setIsVisible(false);
