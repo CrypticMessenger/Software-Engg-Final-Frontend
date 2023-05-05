@@ -74,5 +74,5 @@ export default function JoiningRequest() {
   }, []);
   console.log(displayRequests);
 
-  return <>{displayRequests}</>;
+  return <div data-testid="JoiningRequestTest">{displayRequests}</div>;
 }

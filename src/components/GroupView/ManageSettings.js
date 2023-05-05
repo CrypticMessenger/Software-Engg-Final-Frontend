@@ -10,5 +10,5 @@ export default function GroupSettings() {
   useEffect(() => {
     document.title = "group settings";
   }, []);
-  return <div>GroupSettings</div>;
+  return <div data-testid="ManageSettingsTest">GroupSettings</div>;
 }

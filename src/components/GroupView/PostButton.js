@@ -13,7 +13,7 @@ const PostButton = ({ messageHeader,isDisabled,handleClick }) => {
   console.log("isDisabled",isDisabled);
   const [messageContent, setMessageContent] = useState("");
   return (
-    <form className="mb-6" onSubmit={handleClick}>
+    <form className="mb-6" onClick={handleClick} data-testid="PostButtonTest">
       <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <label htmlFor="comment" className="sr-only">
           {messageHeader}

@@ -12,7 +12,7 @@ import MemberListItem from "./MemberListItem";
  * @example
  *  const groupsData = [{
  *    name: "Neil Sims",
- *    email: "neil.sims@flowbite.com",
+ *    email: "neil.sims@SubPubNet.com",
  *    imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
  *     joinDate: "Nov 10, 2024",
  *     isCreated: true,

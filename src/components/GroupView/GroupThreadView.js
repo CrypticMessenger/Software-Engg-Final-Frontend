@@ -205,9 +205,9 @@ export default function GroupThreadView() {
   }
   , [data]);
   return (
-    <>
+    <div data-testid="GroupThreadTest">
       {thread}
       <Discussion numComments={thread.length} messageHeader={messageHeader}  isReplyAll={isReplyAll} parentID={parentID} url={state.groupLink}  />
-    </>
+    </div>
   );
 }

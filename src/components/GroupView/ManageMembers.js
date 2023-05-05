@@ -53,7 +53,7 @@ export default function ManageMembers({groupId,groupLink}) {
 
   }, []);
   return (
-    <div>
+    <div data-testid="ManageMemberTest">
       <MemberView
         groupsData={memberData}
         tableHeaders={tableHeaders}

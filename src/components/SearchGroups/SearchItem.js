@@ -63,7 +63,7 @@ export default function SearchItem({
     setIsExitVisible(!isExitVisible);
   };
   return (
-    <>
+    <div data-testid="SearchItemTest">
       <tr
         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         key={key}>
@@ -110,6 +110,6 @@ export default function SearchItem({
         </td>
 
       </tr>
-    </>
+    </div>
   );
 }

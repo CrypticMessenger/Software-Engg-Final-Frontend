@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.7",
     "fuse.js": "^6.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,8 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --collectCoverageFrom='src/components/**'",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "createdoc": "jsdoc src -r -d docs",
@@ -59,8 +59,8 @@
     "documentation": "^14.0.1",
     "eslint": "^8.38.0",
     "eslint-config-react-app": "^7.0.1",
-    "jsdoc": "^4.0.2",
     "jest": "^27.5.1",
+    "jsdoc": "^4.0.2",
     "postcss": "^8.4.21",
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.3.1"

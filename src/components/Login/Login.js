@@ -45,12 +45,12 @@ export default function Login() {
     // console.log(data.errors);
 
     const userData = { name: "Neil Sims", email: "neil_sims@ymail.com" };
-    // handleLogin(userData);
+    handleLogin(userData);
 
     // navigate("/dashboard");
   };
   const props = {
-    title: "Flowbite",
+    title: "",
     buttonText: "Login",
     titleText: "Welcome back",
 

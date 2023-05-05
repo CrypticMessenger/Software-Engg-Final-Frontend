@@ -10,14 +10,14 @@ export default function Favourites() {
   const groupsData = [
     {
       name: "Neil Sims",
-      email: "neil.sims@flowbite.com",
+      email: "neil.sims@.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: true,
     },
     {
       name: "blast you",
-      email: "neil.sim2s@flowbite.com",
+      email: "neil.sim2s@SubPubNet.com",
       imagePath: "https://cdn.tuk.dev/assets/templates/olympus/projects.png",
       joinDate: "Nov 10, 2024",
       isCreated: false,
@@ -32,7 +32,7 @@ export default function Favourites() {
   }, []);
 
   return (
-    <div>
+    <div data-testid="FavouriteTest">
       <Grouplist
         groupsData={groupsData}
         tableHeaders={tableHeaders}
