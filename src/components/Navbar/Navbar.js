@@ -108,9 +108,9 @@ export default function Navbar({ children }) {
                 </button>
                 <Link to="/dashboard" className="flex ml-2 md:mr-24">
                   <img
-                    src="https://SubPubNet.com/docs/images/logo.svg"
+                    src="/logo512.png"
                     className="h-8 mr-3"
-                    alt="SubPubNet Logo"
+                    alt=""
                   />
                   <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   SubPubNet
@@ -134,7 +134,7 @@ export default function Navbar({ children }) {
                         onClick={toggleProfile}>
                         <img
                           className="w-8 h-8 rounded-full"
-                          src="https://SubPubNet.com/docs/images/people/profile-picture-5.jpg"
+                          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                           alt="user photo"
                         />
                       </button>
