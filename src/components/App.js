@@ -28,7 +28,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/favourites" element={<Favourites />} />
+              {/* <Route path="/favourites" element={<Favourites />} /> */}
               <Route path="/searchGroups" element={<SearchGroups />} />
               <Route path="/group-info" element={<GroupThreadsList />} />
               <Route path="/group-thread-view" element={<GroupThreadView />} />
